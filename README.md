@@ -48,7 +48,7 @@
 
 ### Example Output ###
 
-   * See [example_output.txt](http://example_output.txt)
+   * See [example_output.txt](https://github.com/tpoechtrager/commitbot/blob/master/example_output.txt)
 
 ### License ###
 
