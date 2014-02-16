@@ -1,0 +1,18 @@
+<bot> marcus pushed 9 commits to marcus -> project x (bb)     # bb = bitbucket (gh for github)
+<bot> marcus bertrand 620ade (svn: r58432) (1 file):          # svn = git svn rev
+<bot> * Added some more things to somefile.py
+<bot> * test test1
+<bot> some name 620ade (svn: r58432) (3 files):
+<bot> * <empty commit message>
+<bot> some name 620ade (svn: r1212) (3 files):
+<bot> * xyz fix
+<bot> * more xyz fixes
+<bot> * even more xyz fixes
+<bot> * test
+<bot> * test
+<bot> ... and 3 more lines
+<bot> marcus bertrand 620ade (1 file):
+<bot> * Added some more things to somefile.py
+<bot> marcus bertrand 620ade (1 file):
+<bot> * Added some more things to somefile.py
+<bot> ... and 4 more commits

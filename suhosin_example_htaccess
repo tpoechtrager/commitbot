@@ -1,0 +1,3 @@
+php_flag suhosin.simulation On
+php_flag magic_quotes_gpc Off
+
