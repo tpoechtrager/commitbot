@@ -40,7 +40,7 @@
     then you must disable it in the  
     directory where ever you put the php files. Suhosin is adding backslashes  
     ("magic quotes") which will break the json content in `$_POST['payload']`.  
-    Please see `suhosin_example_htaccess` (rebot it to `.htaccess`).
+    Please see `suhosin_example_htaccess` (rename it to `.htaccess`).
 
 ### Debugging hook.php ###
 
