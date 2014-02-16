@@ -7,7 +7,7 @@
 
 ### Requirements ###
 
-  * `Unix compatible system (fifo pipe)`
+  * `A Unix compatible system (fifo pipe)`
   * `A PHP5 webserver with json support (php5-json / php5-common)`
   * `Python + python-twisted-words`
 
