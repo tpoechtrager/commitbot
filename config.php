@@ -39,6 +39,9 @@ $max_message_line_len = 120;
 // limit commit message to N lines
 $max_message_lines = 5;
 
+// show an url to the diff of the commit
+$show_url_to_diff = false;
+
 // strip 'git-svn-id: ' in commit messages
 // (only matters for git svn mirrors)
 $strip_svn_id = true;

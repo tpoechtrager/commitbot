@@ -348,6 +348,7 @@ function format_message_push(&$info, $service)
     global $lower_case_repo_name, $lower_case_repo_owner;
     global $lower_case_author_name, $lower_case_commit_message;
     global $strip_svn_id, $show_svn_rev;
+    global $show_url_to_diff;
 
     $message = array();
     $count = isset($info["commits"]) ? count($info["commits"]) : 0;
@@ -446,6 +447,17 @@ function format_message_push(&$info, $service)
                     $message[] = sprintf("\x0314... and %d more line%s\x03", $skipped, plural($skipped));
                 }
             }
+        }
+
+        if ($show_url_to_diff)
+        {
+            $urls = array("bb" => "bitbucket.org", "gh" => "github.org");
+            $cmt = array("bb" => "commits", "gh" => "commit");
+
+            $message[] = sprintf("https://%s/%s/%s/%s/%s",
+                                 $urls[$service], urlencode(strtolower($info["repoowner"])),
+                                 urlencode(strtolower($info["reponame"])), $cmt[$service],
+                                 $commit["shorthash2"]);
         }
 
         if (++$c >= $max_commits) {
