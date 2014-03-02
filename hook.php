@@ -168,6 +168,8 @@ function parse_event_bitbucket_push($json, &$out)
         return;
     }
 
+    $tofix = array();
+
     foreach ($json["commits"] as $c)
     {
         check_array_key("raw_node", $c);
@@ -182,6 +184,21 @@ function parse_event_bitbucket_push($json, &$out)
         }
 
         $commit = array();
+
+        if (!array_key_exists("branch", $commit) || !$c["branch"])
+        {
+            $tofix[] = &$commit["branch"];
+        }
+        else
+        {
+            $tofix[] = &$commit["branch"];
+
+            foreach ($tofix as &$name) {
+                $name = $c["branch"];
+            }
+
+            $tofix = array();
+        }
 
         if ($out["type"] == "hg") {
             $commit["revision"] = (int)$c["revision"];
@@ -262,7 +279,7 @@ function parse_event_github_push($json, &$out)
 
         if (!function_exists("parse_github_commit_files"))
         {
-            function parse_github_commit_files(&$c, $type, &$commit)
+            function parse_changed_files(&$c, $type, &$commit)
             {
                 foreach ($c[$type] as $f) {
                     $commit["files"][] = array($f, $type);
@@ -272,9 +289,9 @@ function parse_event_github_push($json, &$out)
 
         $commit["files"] = array();
 
-        parse_github_commit_files($c, "added", $commit);
-        parse_github_commit_files($c, "removed", $commit);
-        parse_github_commit_files($c, "modified", $commit);
+        parse_changed_files($c, "added", $commit);
+        parse_changed_files($c, "removed", $commit);
+        parse_changed_files($c, "modified", $commit);
 
         $out["commits"][] = $commit;
     }
@@ -358,9 +375,15 @@ function format_message_push(&$info, $service)
             $svnrev = get_svn_rev($commit);
         }
 
-        $m = sprintf("\x02\x033%s\x03\x02\x035 %s%s \x03(%d file%s):",
+        $branch = isset($commit["branch"]) ? $commit["branch"] : "";
+
+        if ($branch != "") {
+            $branch = sprintf("(%s) ", $branch);
+        }
+
+        $m = sprintf("\x02\x033%s\x03\x02\x035 %s%s %s\x03(%d file%s):",
                      str_to_lower(get_name_by_commit($commit), $lower_case_author_name),
-                     $commit["shorthash2"], $svnrev, count($commit["files"]),
+                     $commit["shorthash2"], $svnrev, $branch, count($commit["files"]),
                      plural(count($commit["files"])));
 
         $message[] = $m;
@@ -466,24 +489,14 @@ function push_to_fifo(&$message)
         }
     }
 
-    $c = 0;
-    while ($c <= 1)
-    {
-        if (!file_exists($fifo)) {
-            return;
-        }
+    if (!file_exists($fifo)) {
+        return;
+    }
 
-        $f = @fopen("/tmp/gitbot_fifo", "w");
+    $f = @fopen($fifo, "w");
 
-        if ($f === FALSE)
-        {
-            error("cannot open fifo pipe: " . $fifo);
-            unlink($file);
-            $c++;
-            continue;
-        }
-
-        break;
+    if (!$f) {
+        error("cannot open fifo pipe: " . $fifo);
     }
 
     fputs($f, str_replace("\r", "", implode("\n", $message)));
@@ -500,7 +513,7 @@ if (!($json = json_decode($data, true))) {
 
 if (isset($json["canon_url"]) && strstr($json["canon_url"], "://bitbucket.org"))
 {
-    // BitBucket
+    // Bitbucket
 
     parse_event_bitbucket_push($json, $out);
     $message = format_message_push($out, "bb");

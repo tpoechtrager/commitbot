@@ -51,10 +51,10 @@ $show_svn_rev = true;
 // do not use fork in a production environment
 $use_fork = false;
 
-// fifo pipe (you must change it in gitbot.py too)
-$fifo = "/tmp/gitbot_fifo";
+// fifo pipe (you must change it in commitbot.py too)
+$fifo = "/tmp/commitbot_fifo";
 
 // log file
-$logfile = "/tmp/gitbot_log";
+$logfile = "/tmp/commitbot_log";
 
 ?>

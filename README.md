@@ -17,7 +17,7 @@
     [Bitbucket](https://confluence.atlassian.com/display/BITBUCKET/POST+hook+management) and
     [Github](https://help.github.com/articles/post-receive-hooks)
     which are calling  
-    the php script which then parses the json content and forwards it to  
+    the PHP script which then parses the json content and forwards it to  
     the IRC bot using a fifo pipe.
 
 ### Setup ###

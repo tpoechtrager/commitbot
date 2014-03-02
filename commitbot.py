@@ -20,7 +20,7 @@ irc_realname = irc_nickname
 irc_channel = "#test"
 irc_channel_password = ""
 
-fifo = "/tmp/gitbot_fifo"
+fifo = "/tmp/commitbot_fifo"
 
 fork_to_background = True
 
