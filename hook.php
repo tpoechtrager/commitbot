@@ -185,7 +185,7 @@ function parse_event_bitbucket_push($json, &$out)
 
         $commit = array();
 
-        if (!array_key_exists("branch", $commit) || !$c["branch"])
+        if (!array_key_exists("branch", $c) || !$c["branch"])
         {
             $tofix[] = &$commit["branch"];
         }
