@@ -382,10 +382,23 @@ function format_message_push(&$info, $service)
             $branch = sprintf("(%s) ", $branch);
         }
 
-        $m = sprintf("\x02\x033%s\x03\x02\x035 %s%s %s\x03(%d file%s):",
+        $diffurl = "";
+
+        if ($show_url_to_diff)
+        {
+            $urls = array("bb" => "bitbucket.org", "gh" => "github.org");
+            $cmt = array("bb" => "commits", "gh" => "commit");
+
+            $diffurl= sprintf(" https://%s/%s/%s/%s/%s",
+                              $urls[$service], urlencode(strtolower($info["repoowner"])),
+                              urlencode(strtolower($info["reponame"])), $cmt[$service],
+                              $commit["shorthash2"]);
+        }
+
+        $m = sprintf("\x02\x033%s\x03\x02\x035 %s%s %s\x03(%d file%s):%s",
                      str_to_lower(get_name_by_commit($commit), $lower_case_author_name),
                      $commit["shorthash2"], $svnrev, $branch, count($commit["files"]),
-                     plural(count($commit["files"])));
+                     plural(count($commit["files"])), $diffurl);
 
         $message[] = $m;
 
@@ -447,17 +460,6 @@ function format_message_push(&$info, $service)
                     $message[] = sprintf("\x0314... and %d more line%s\x03", $skipped, plural($skipped));
                 }
             }
-        }
-
-        if ($show_url_to_diff)
-        {
-            $urls = array("bb" => "bitbucket.org", "gh" => "github.org");
-            $cmt = array("bb" => "commits", "gh" => "commit");
-
-            $message[] = sprintf("https://%s/%s/%s/%s/%s",
-                                 $urls[$service], urlencode(strtolower($info["repoowner"])),
-                                 urlencode(strtolower($info["reponame"])), $cmt[$service],
-                                 $commit["shorthash2"]);
         }
 
         if (++$c >= $max_commits) {
