@@ -386,7 +386,7 @@ function format_message_push(&$info, $service)
 
         if ($show_url_to_diff)
         {
-            $urls = array("bb" => "bitbucket.org", "gh" => "github.org");
+            $urls = array("bb" => "bitbucket.org", "gh" => "github.com");
             $cmt = array("bb" => "commits", "gh" => "commit");
 
             $diffurl= sprintf(" https://%s/%s/%s/%s/%s",
