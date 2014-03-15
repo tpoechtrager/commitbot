@@ -277,7 +277,7 @@ function parse_event_github_push($json, &$out)
         $commit["message"] = array_filter(explode("\n", $c["message"]));
         $commit["size"] = -1;
 
-        if (!function_exists("parse_github_commit_files"))
+        if (!function_exists("parse_changed_files"))
         {
             function parse_changed_files(&$c, $type, &$commit)
             {
@@ -448,7 +448,6 @@ function format_message_push(&$info, $service)
         else
         {
             $skipped = $messagecount - $i;
-
 
             if ($skipped > 0)
             {
