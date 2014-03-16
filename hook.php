@@ -147,6 +147,20 @@ function get_name_by_commit(&$commit)
     return $commit["authorname"];
 }
 
+function filter_empty_lines($lines)
+{
+    $new = array();
+
+    foreach ($lines as $line)
+    {
+        if (trim($line) != "") {
+            $new[] = $line;
+        }
+    }
+
+    return $new;
+}
+
 function parse_event_bitbucket_push($json, &$out)
 {
     check_array_key("user", $json);
@@ -216,7 +230,7 @@ function parse_event_bitbucket_push($json, &$out)
         $commit["authorname"] = implode(" ", $tmp);
         $commit["authortime"] = strtotime($c["utctimestamp"]);
 
-        $commit["message"] = array_filter(explode("\n", $c["message"]));
+        $commit["message"] = filter_empty_lines(explode("\n", $c["message"]));
         $commit["size"] = $c["size"];
 
         $commit["files"] = array();
@@ -274,7 +288,7 @@ function parse_event_github_push($json, &$out)
         $commit["authorname"] = $c["author"]["name"];
         $commit["authortime"] = strtotime($c["timestamp"]);
 
-        $commit["message"] = array_filter(explode("\n", $c["message"]));
+        $commit["message"] = filter_empty_lines(explode("\n", $c["message"]));
         $commit["size"] = -1;
 
         if (!function_exists("parse_changed_files"))
@@ -407,7 +421,7 @@ function format_message_push(&$info, $service)
 
         $lineprefix = "\x02*\x02 ";
 
-        for (; ($i<$messagecount && $i<$max_message_lines+$empty); $i++)
+        for (; ($i<$messagecount && $i<$max_message_lines+$empty); ++$i)
         {
             $line = str_to_lower($commit["message"][$i], $lower_case_commit_message);
             $len = strlen($line);
@@ -419,12 +433,6 @@ function format_message_push(&$info, $service)
                     $empty++;
                     break;
                 }
-            }
-
-            if (trim($line) == "") // skip white space lines
-            {
-                $empty++;
-                continue;
             }
 
             if ($len > $max_message_line_len)

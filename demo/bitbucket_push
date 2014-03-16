@@ -10,7 +10,7 @@
                     "type": "modified"
                 }
             ],
-            "message": "Added some more things to somefile.py\ntest test1\ngit-svn-id: svn-url@58432 .....",
+            "message": "Added some more things to somefile.py\ntest test1\ngit-svn-id: svn-url@58432 .....\n\nConflicts:\n  src/xyz.cpp",
             "node": "620ade18607a",
             "parents": [
                 "702c70160afc"
