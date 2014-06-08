@@ -33,7 +33,8 @@
 
   * Github:
       * Go to your respository settings, then click on `Webhooks & Services` and  
-        add a `webhook` (*just push*), e.g: `http://userbot:password@1.2.3.4/commitbot/hook.php`
+        add a `webhook` (*just push*) (content type: *application/x-www-form-urlencoded*),  
+        e.g.: `http://userbot:password@1.2.3.4/commitbot/hook.php`
 
   * **Important:** If you are using 
     [`suhosin`](http://www.hardened-php.net/suhosin/),
