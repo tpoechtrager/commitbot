@@ -5,10 +5,10 @@ include_once "compat.php";
 if (@posix_isatty(STDOUT))
 {
     echo "being run from terminal, using debug mode\n\n";
-    $data = file_get_contents("demo/bitbucket_push");
+    //$data = file_get_contents("demo/bitbucket_push");
     //$data = file_get_contents("demo/bitbucket_push_mercurial");
-    //$data = file_get_contents("demo/github_push");
-    //$_SERVER["HTTP_X_GITHUB_EVENT"] = "push";
+    $data = file_get_contents("demo/github_push");
+    $_SERVER["HTTP_X_GITHUB_EVENT"] = "push";
     $DEBUG = true;
     $TERMINAL = true;
     $WRITETOFIFO = true;
@@ -255,8 +255,10 @@ function parse_event_github_push($json, &$out)
     check_array_key("name", $json["pusher"]);
     check_array_key("owner", $json["repository"]);
     check_array_key("name", $json["repository"]["owner"]);
+    check_array_key("ref", $json);
 
     $out["type"] = "git";
+    $out["branch"] = basename($json["ref"]);
 
     $out["pusher"] = $json["pusher"]["name"];
     $out["reponame"] = $json["repository"]["name"];
@@ -391,7 +393,11 @@ function format_message_push(&$info, $service)
             $svnrev = get_svn_rev($commit);
         }
 
-        $branch = isset($commit["branch"]) ? $commit["branch"] : "";
+        if ($service == "gh") {
+            $branch = $info["branch"];
+        } else {
+            $branch = isset($commit["branch"]) ? $commit["branch"] : "";
+        }
 
         if ($branch != "") {
             $branch = sprintf("(%s) ", $branch);
