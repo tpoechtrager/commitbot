@@ -31,13 +31,13 @@ $lower_case_author_name = true;
 $lower_case_commit_message = false;
 
 // maximum shown commits
-$max_commits = 5;
+$max_commits = 3;
 
 // maximum line length of each commit log line
-$max_message_line_len = 120;
+$max_message_line_len = 100;
 
 // limit commit message to N lines
-$max_message_lines = 5;
+$max_message_lines = 2;
 
 // show an url to the diff of the commit
 $show_url_to_diff = false;
