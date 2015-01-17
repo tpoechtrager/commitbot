@@ -358,14 +358,42 @@ function get_svn_rev(&$commit)
     return "";
 }
 
+function strip_merge_history(&$info)
+{
+    $new = array();
+    $last_merge = 0;
+
+    foreach ($info["commits"] as $commit)
+    {
+        if (!count($commit["message"])) {
+            continue;
+        }
+
+        if (1 == sscanf($commit["message"][0], "Merge branch '%*s' into %s", $dummy))
+        {
+            while (count($new) > $last_merge)
+                array_pop($new);
+            $last_merge = count($new) + 1;
+        }
+
+        $new[] = $commit;
+    }
+
+    $info["commits"] = $new;
+}
+
 function format_message_push(&$info, $service)
 {
     global $max_commits;
     global $max_message_lines, $max_message_line_len;
     global $lower_case_repo_name, $lower_case_repo_owner;
     global $lower_case_author_name, $lower_case_commit_message;
-    global $strip_svn_id, $show_svn_rev;
+    global $strip_svn_id, $strip_merge_history, $show_svn_rev;
     global $show_url_to_diff;
+
+    if ($strip_merge_history) {
+        strip_merge_history($info);
+    }
 
     $message = array();
     $count = isset($info["commits"]) ? count($info["commits"]) : 0;

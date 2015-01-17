@@ -115,9 +115,146 @@
         "ChangeLog",
         "src/engine/command.cpp",
         "src/engine/world.cpp",
+        "src/last_sauer_svn_rev.h"
+      ]
+    },
+    {
+      "id": "3737147da9bf0ae2037a56ccac5f141c16ecd520",
+      "distinct": false,
+      "message": "update changelog",
+      "timestamp": "2015-01-17T22:13:44+01:00",
+      "url": "https://github.com/tpoechtrager/wc-ng/commit/3737147da9bf0ae2037a56ccac5f141c16ecd520",
+      "author": {
+        "name": "Thomas Pöchtrager",
+        "email": "example@example.com",
+        "username": "tpoechtrager"
+      },
+      "committer": {
+        "name": "Thomas Pöchtrager",
+        "email": "example@example.com",
+        "username": "tpoechtrager"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "ChangeLog"
+      ]
+    },
+    {
+      "id": "3737147da9bf0ae2037a56ccac5f141c16ecd520",
+      "distinct": false,
+      "message": "update changelog",
+      "timestamp": "2015-01-17T22:13:44+01:00",
+      "url": "https://github.com/tpoechtrager/wc-ng/commit/3737147da9bf0ae2037a56ccac5f141c16ecd520",
+      "author": {
+        "name": "Thomas Pöchtrager",
+        "email": "example@example.com",
+        "username": "tpoechtrager"
+      },
+      "committer": {
+        "name": "Thomas Pöchtrager",
+        "email": "example@example.com",
+        "username": "tpoechtrager"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "ChangeLog"
+      ]
+    },
+    {
+      "id": "856beb1e8eb0780dada94030b838f179cb0dd855",
+      "distinct": true,
+      "message": "Merge branch 'master' into sdl2",
+      "timestamp": "2015-01-17T22:13:51+01:00",
+      "url": "https://github.com/tpoechtrager/wc-ng/commit/876beb1e8eb0780dada94030b838f179cb0dd859",
+      "author": {
+        "name": "Thomas Pöchtrager",
+        "email": "example@example.com",
+        "username": "tpoechtrager"
+      },
+      "committer": {
+        "name": "Thomas Pöchtrager",
+        "email": "example@example.com",
+        "username": "tpoechtrager"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "ChangeLog",
+        "src/engine/command.cpp",
+        "src/engine/world.cpp",
+        "src/readme_source.txt",
+        "src/shared/tools.h"
+      ]
+    },
+    {
+      "id": "856beb1e8eb0780dada94030b838f179cb0dd855",
+      "distinct": true,
+      "message": "Merge branch 'master' into sdl2",
+      "timestamp": "2015-01-17T22:13:51+01:00",
+      "url": "https://github.com/tpoechtrager/wc-ng/commit/876beb1e8eb0780dada94030b838f179cb0dd859",
+      "author": {
+        "name": "Thomas Pöchtrager",
+        "email": "example@example.com",
+        "username": "tpoechtrager"
+      },
+      "committer": {
+        "name": "Thomas Pöchtrager",
+        "email": "example@example.com",
+        "username": "tpoechtrager"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "ChangeLog",
+        "src/engine/command.cpp",
+        "src/engine/world.cpp",
         "src/last_sauer_svn_rev.h",
         "src/readme_source.txt",
         "src/shared/tools.h"
+      ]
+    },
+    {
+      "id": "3737147da9bf0ae2037a56ccac5f141c16ecd520",
+      "distinct": false,
+      "message": "update changelog",
+      "timestamp": "2015-01-17T22:13:44+01:00",
+      "url": "https://github.com/tpoechtrager/wc-ng/commit/3737147da9bf0ae2037a56ccac5f141c16ecd520",
+      "author": {
+        "name": "Thomas Pöchtrager",
+        "email": "example@example.com",
+        "username": "tpoechtrager"
+      },
+      "committer": {
+        "name": "Thomas Pöchtrager",
+        "email": "example@example.com",
+        "username": "tpoechtrager"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "ChangeLog"
       ]
     }
   ],

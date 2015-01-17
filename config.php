@@ -46,6 +46,9 @@ $show_url_to_diff = false;
 // (only matters for git svn mirrors)
 $strip_svn_id = true;
 
+// strip merge history
+$strip_merge_history = false;
+
 // show svn revision
 // (only matters for git svn mirrors)
 $show_svn_rev = true;
